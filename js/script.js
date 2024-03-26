@@ -1,6 +1,7 @@
 const url = "https://jsonplaceholder.typicode.com/users"
 const tabBody = document.querySelector("#tab-body-user")
 const inputField = document.querySelector("#user-input")
+const selectedField = document.querySelector("#user-select")
 
 const createTabs = (id, name, username, email) => {
     const tr = document.createElement("tr");
@@ -34,4 +35,14 @@ const getUser = async () => {
 
 getUser().then(res => res.map(user => {
     createTabs(user.id, user.name, user.username, user.email)
-}))
+})).then(() => {
+    inputField.addEventListener("keyup", () => {
+        console.log(inputField.value);
+        if(selectedField.value === ""){
+            alert("Scegli un'opzione valida!")
+        } else {
+            console.log(selectedField.value);
+            
+        }
+    })
+})
